@@ -1,66 +1,68 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Store from './store' //状态管理
-import Home from './views/Home'
-import Archives from './views/Archives'
-import Exercise from './views/Exercise'
-import Issue from './views/Issue'
-import About from './views/About'
-import Article from './views/Article'
-import Tag from './views/Tag'
-import Error from './views/Error'
 
 Vue.use(Router);
+
+const routerMap = [
+    {path: '*', component: () => import('./views/404')},
+    {path: '/404', component: () => import('./views/404')},
+    {path: '/403', component: () => import('./views/403')},
+    {path: '/500', component: () => import('./views/500')},
+    {
+        path: '/',
+        name: '/',
+        meta: {title: '首页'},
+        component: () => import('./views/Home'),
+    }, {
+        path: '/Archives',
+        name: '/Archives',
+        meta: {title: '归档'},
+        component: () => import('./views/Archives'),
+    }, {
+        path: '/Exercise',
+        meta: {title: '练习'},
+        component: () => import('./views/Exercise'),
+    }, {
+        path: '/Issue',
+        name: '/Issue',
+        meta: {title: '留言'},
+        component: () => import('./views/Issue'),
+    }, {
+        path: '/About',
+        name: '/About',
+        meta: {title: '关于'},
+        component: () => import('./views/About'),
+    }, {
+        path: '/Article/:id',
+        name: '/Article',
+        meta: {title: '文章'},
+        component: () => import('./views/Article'),
+    }, {
+        path: '/Tag/:name',
+        name: '/Tag',
+        meta: {title: '标签'},
+        component: () => import('./views/Tag'),
+    }
+];
 
 const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: [
-        {
-            path: '/',
-            name: 'home',
-            component: Home
-        }, {
-            path: '/Error',
-            name: 'Error',
-            component: Error
-        }, {
-            path: '/Archives',
-            name: 'Archives',
-            component: Archives
-        }, {
-            path: '/Exercise',
-            name: 'Exercise',
-            component: Exercise,
-        }, {
-            path: '/Issue',
-            name: 'Issue',
-            component: Issue,
-        }, {
-            path: '/About',
-            name: 'About',
-            component: About,
-        }, {
-            path: '/Article/:id',
-            name: 'Article',
-            component: Article
-        }, {
-            path: '/Tag/:name',
-            name: 'Tag',
-            component: Tag
-        }
-    ]
-});
+    routes: routerMap
+})
 
 //全局守卫
 router.beforeEach((to, from, next) => {
-    if (to.matched.length === 0) {
-        from.name ? next({
-            name: from.name
-        }) : next('/Error');
-    } else {
-        next(); //如果匹配到正确跳转
-    }
+    next(); //如果匹配到正确跳转
+
+    Store.commit({
+        type: 'SET_CURR_ROUTER',
+        from: from.name,
+        to: to.name,
+        query: to.query,
+        instance: router,
+    })
 });
 
 export default router

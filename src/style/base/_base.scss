@@ -93,7 +93,7 @@ pre{padding:0;background:0 0;border:none}
 .btn-doc{position:relative;border:1px solid $min-color;background-color:transparent;margin:0 2px;}
 @media only screen and (max-width:767px){.btn-doc{display:block;width:50%;margin-left:auto;margin-right:auto;margin-top:10px}}
 .home-template .main-header{padding-top:62px;padding-bottom:62px;background-repeat:no-repeat;background-position:center 20%;-webkit-background-size:cover;background-size:cover}
-.main-navigation{text-align:center;background:#fff;border-top:1px solid #ebebeb;margin-bottom:35px;border-bottom:2px solid #e1e1e1}
+.main-navigation{text-align:center;background:#fff;border-top:1px solid #ebebeb;border-bottom:2px solid #e1e1e1}
 .main-navigation .menu{padding:0;margin:0}
 .main-navigation .menu li{list-style:none;display:inline-block;position:relative}
 .main-navigation .menu li.nav-current{border-bottom:2px solid $min-color;margin-bottom:-2px;a{color: $min-color;}}
@@ -113,6 +113,7 @@ pre{padding:0;background:0 0;border:none}
 }
 .navbar-header{cursor: pointer;text-align:center;background: #ffffff;position: relative;z-index: 999;height:56px;}
 .navbar-header i{height:56px;line-height:56px;font-size:2em;cursor:pointer}
+.content-wrap{margin-top:35px;}
 @media (min-width:768px){ .nav-toggle-button{display:none}}
 .post{padding:35px;background:#fff;margin-bottom:35px;position:relative;overflow:hidden;-webkit-box-shadow: 1px 2px 3px #ddd;box-shadow: 1px 2px 3px #ddd;}
 .post .featured{position:absolute;background:$min-color;color:#fff;text-align:center;top:-12px;right:-32px;width:80px;height:40px;line-height:54px;transform:rotate(45deg)}

@@ -52,9 +52,9 @@
       Sidebar: Sidebar
     },
     created() {
-      this.$axios({
-        url: '/Index'
-      })
+      // this.$axios({
+      //   url: '/Index'
+      // })
     }
   }
 </script>

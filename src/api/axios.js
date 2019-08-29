@@ -1,16 +1,16 @@
-import axios from 'axios'
+import Axios from 'axios'
 import browser from '../utils/browser'
 import store from '../store'
-import { isEmptyObj } from '../utils/common'
+import {isEmptyObj} from '../utils/common'
 
 const baseurl = process.env.VUE_APP_BASE_URL
 if (process.env.NODE_ENV === 'production') {
-    axios.defaults.baseURL = baseurl
+    Axios.defaults.baseURL = baseurl
 } else {
-    axios.defaults.baseURL = 'http://127.0.0.1/myself/SeanBlogPhp/public/'
+    Axios.defaults.baseURL = 'http://127.0.0.1/myself/SeanBlogPhp/public/'
 }
 // 创建axios实例
-const service = axios.create({
+const service = Axios.create({
     baseURL: baseurl, // api 的 base_url
     timeout: 10000 // 请求超时时间
 })
@@ -53,7 +53,7 @@ service.interceptors.response.use(response => {
                 return Promise.resolve(data.respData || data.data)
 
             case 401:
-                store.state.currRouter.push({ name: 'login' })
+                store.state.currRouter.push({name: 'login'})
                 notification.error({
                     message: '登陆状态失效',
                     description: '可能是被别人抢登导致，请重新登陆',
@@ -61,7 +61,7 @@ service.interceptors.response.use(response => {
                 return Promise.reject(new Error('登陆状态失效，请重新登陆'))
 
             case 403:
-                store.state.currRouter.push({ path: '403', query: { msg: method + '：' + apiPath } })
+                store.state.currRouter.push({path: '403', query: {msg: method + '：' + apiPath}})
                 message.error(data.info)
                 return Promise.reject(data.info)
 
@@ -84,8 +84,8 @@ service.interceptors.response.use(response => {
  * 若params中无对应的key，则干掉url中的"/{xxx}"
  * @param config
  */
-function handleUrl (config) {
-    let { url, replaceData } = config
+function handleUrl(config) {
+    let {url, replaceData} = config
     if (url.indexOf(`{`) === -1) return
 
     let obj = replaceData || {}
@@ -102,11 +102,11 @@ function handleUrl (config) {
     config.url = url
 }
 
-function handleError (rejectError) {
+function handleError(rejectError) {
     const errObj = JSON.parse(JSON.stringify(rejectError))
     console.error(errObj)
-    const { code, config, message, response } = errObj
-    const { baseURL, url, method, timeout } = config
+    const {code, config, message, response} = errObj
+    const {baseURL, url, method, timeout} = config
 
     if (code === 'ECONNABORTED') {
         notification.error({
@@ -121,7 +121,7 @@ function handleError (rejectError) {
             },
         })
     } else if (!isEmptyObj(response)) {
-        const { status } = response
+        const {status} = response
         const apiPath = url.replace(baseURL, '')
         if (status === 400) {
             notification.error({
@@ -151,7 +151,5 @@ function handleError (rejectError) {
     }
     return Promise.reject(new Error(message))
 }
-
-export default axios
 
 export default service
