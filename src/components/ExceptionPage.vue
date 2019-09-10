@@ -14,8 +14,10 @@
     </div>
 </template>
 
-<script>
-    const types = {
+<script lang="ts">
+    import {Component, Vue, Prop} from "vue-property-decorator";
+
+    const types: object = {
         403: {
             img: 'https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg',
             title: '403',
@@ -32,24 +34,15 @@
             desc: '抱歉，服务器出错了'
         }
     }
+    @Component
+    export default class ExceptionPage extends Vue{
+        @Prop({default: '404'})
+        type: String | undefined
 
-    export default {
-        name: 'Exception',
-        props: {
-            type: {
-                type: String,
-                default: '404'
-            }
-        },
-        data () {
-            return {
-                config: types
-            }
-        },
-        methods: {
-            handleToHome () {
-                this.$router.push({ name: '/' })
-            }
+        config: object = types
+
+        handleToHome () {
+            this.$router.push({ name: '/' })
         }
     }
 </script>

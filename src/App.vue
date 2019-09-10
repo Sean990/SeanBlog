@@ -1,31 +1,34 @@
 <template>
-    <div>
-        <keep-alive>
-            <app-header></app-header>
-        </keep-alive>
-        <router-view></router-view>
-        <keep-alive>
-            <app-footer></app-footer>
-        </keep-alive>
-    </div>
+  <div id="app">
+    <keep-alive>
+      <AppHeader></AppHeader>
+    </keep-alive>
+    <router-view></router-view>
+    <keep-alive>
+      <AppFooter></AppFooter>
+    </keep-alive>
+    <alert :status="'success'" :msg="'hahahahhaha'" v-if="false"></alert>
+  </div>
 </template>
 
 <script>
-    import Header from '@/components/Header'
-    import Footer from '@/components/Footer'
+  import { Component, Vue, Model} from 'vue-property-decorator'
+  import AppHeader from './components/Header'
+  import AppFooter from './components/Footer'
+  import Alert from './components/Alert'
 
-    export default {
-        data() {
-            return {}
-        },
-        components: {
-            appHeader: Header,
-            appFooter: Footer
-        },
-        methods: {}
+  @Component({
+    components: {
+      AppHeader,
+      AppFooter,
+      Alert
     }
+  })
+  export default class App extends Vue{
+
+  }
 </script>
 
 <style lang="scss">
-    @import './style/base/_base.scss';
+  @import './scss/_base.scss';
 </style>

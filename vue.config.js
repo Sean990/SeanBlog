@@ -1,19 +1,26 @@
 const path = require('path');
 const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin');
+const resolve = dir => {
+    return path.join(__dirname, dir)
+}
+// 线上打包路径，请根据项目实际线上情况
+const BASE_URL = process.env.NODE_ENV === 'production' ? '/' : '/'
 
 module.exports = {
-    // 项目部署的基础路径
+    // 当使用基于 HTML5 history.pushState 的路由时；
+    // 当使用 pages 选项构建多页面应用时。
+    publicPath: BASE_URL,
 
-    publicPath: '/',
-
-    // 将构建好的文件输出到哪里
+    // 当运行 vue-cli-service build 时生成的生产环境构建文件的目录。注意目标目录在构建之前会被清除 (构建时传入 --no-clean 可关闭该行为)。
     outputDir: process.env.outputDir,
 
+    // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
     assetsDir: 'static',
 
     css: {
         extract: true, // 是否使用css分离插件 ExtractTextPlugin
         sourceMap: false, // 开启 CSS source maps?
+        modules: false, // 启用 CSS modules for all css / pre-processor files.
         loaderOptions: {
             // css moudle 配置：https://www.jianshu.com/p/125f33c35446
             css: {
@@ -27,8 +34,7 @@ module.exports = {
             less: {
                 javascriptEnabled: true
             }
-        }, // css预设器配置项
-        modules: false // 启用 CSS modules for all css / pre-processor files.
+        } // css预设器配置项
     },
 
     lintOnSave: false,
@@ -81,7 +87,7 @@ module.exports = {
         config.plugins.push(new SkeletonWebpackPlugin({
             webpackConfig: {
                 entry: {
-                    app: path.join(__dirname, './src/config/skeleton.js'),
+                    app: resolve('./src/config/skeleton.js')
                 },
             },
             minimize: true,

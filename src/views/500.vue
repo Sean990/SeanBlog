@@ -1,14 +1,18 @@
 <template>
-    <exception-page type="500" />
+    <exception-page type="500"/>
 </template>
 
-<script>
-    import ExceptionPage from '@/components/ExceptionPage'
+<script lang="ts">
+    import {Component, Vue} from "vue-property-decorator";
+    import ExceptionPage from "@/components/ExceptionPage.vue";
 
-    export default {
+    @Component({
         components: {
             ExceptionPage
         }
+    })
+    export default class Exception500 extends Vue {
+
     }
 </script>
 

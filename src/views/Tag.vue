@@ -29,15 +29,17 @@
     </section>
 </template>
 
-<script>
-    import Sidebar from '@/components/Sidebar'
+<script lang="ts">
+    import {Component, Vue} from "vue-property-decorator";
+    import Sidebar from "@/components/Sidebar.vue";
 
-    export default {
-        components: { Sidebar },
-        name: "Tag",
-        data() {
-            return {}
+    @Component({
+        components: {
+            Sidebar
         }
+    })
+    export default class Tag extends Vue {
+
     }
 </script>
 

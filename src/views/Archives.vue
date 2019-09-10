@@ -13,7 +13,8 @@
                                     <router-link class="archive-article-inner" to="/Article">
                                         <header class="archive-article-header">
                                             <div class="archive-article-date">
-                                                <time datetime="2019-03-01T08:06:08.000Z" itemprop="datePublished">3月1</time>
+                                                <time datetime="2019-03-01T08:06:08.000Z" itemprop="datePublished">3月1
+                                                </time>
                                             </div>
                                             <h1 itemprop="name">
                                                 <div class="archive-article-title">第一篇文章</div>
@@ -24,11 +25,11 @@
                             </div>
                         </section>
 
-<!--                        <nav class="pagination" role="navigation">-->
-<!--                            <span class="page-number">第 1 页 ⁄ 共 9 页</span>-->
-<!--                            <router-link class="older-posts" to="/page/2/"><i class="fa fa-angle-right"></i>-->
-<!--                            </router-link>-->
-<!--                        </nav>-->
+                        <!--                        <nav class="pagination" role="navigation">-->
+                        <!--                            <span class="page-number">第 1 页 ⁄ 共 9 页</span>-->
+                        <!--                            <router-link class="older-posts" to="/page/2/"><i class="fa fa-angle-right"></i>-->
+                        <!--                            </router-link>-->
+                        <!--                        </nav>-->
                     </section>
                 </main>
                 <Sidebar></Sidebar>
@@ -38,16 +39,17 @@
     </section>
 </template>
 
-<script>
-    import Sidebar from "@/components/Sidebar"
-    export default {
-        name: "Archives",
-        data() {
-            return {}
-        },
+<script lang="ts">
+    import {Component, Vue} from "vue-property-decorator";
+    import Sidebar from "@/components/Sidebar.vue";
+
+    @Component({
         components: {
-            Sidebar: Sidebar
-        },
+            Sidebar
+        }
+    })
+    export default class Archives extends Vue {
+
     }
 </script>
 

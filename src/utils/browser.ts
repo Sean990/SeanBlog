@@ -1,10 +1,10 @@
 /* eslint disabled */
-let ua = window.navigator.userAgent;
-let isIE = ("ActiveXObject" in window);
-let isChrome = ua.match(/Chrome/i);
-let isMobile = !!(ua.match(/(iPhone|iPad|iPod)/i) || ua.match(/Android/i) || ua.match(/Windows Phone/i) || ua.match(/IEMobile/i));
-let IEVersion = null;
-let isIE8, isIE9, isIE10, isIE11;
+let ua: string = window.navigator.userAgent;
+let isIE: boolean = ("ActiveXObject" in window);
+let isChrome: RegExpMatchArray | null = ua.match(/Chrome/i);
+let isMobile: boolean = !!(ua.match(/(iPhone|iPad|iPod)/i) || ua.match(/Android/i) || ua.match(/Windows Phone/i) || ua.match(/IEMobile/i));
+let IEVersion: string | null = null;
+let isIE8: boolean, isIE9: boolean, isIE10: boolean, isIE11: boolean;
 isIE8 = isIE9 = isIE10 = isIE11 = false;
 let appName = navigator.appName;
 if (appName === "Microsoft Internet Explorer" || isIE) {
