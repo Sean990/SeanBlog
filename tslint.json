@@ -10,7 +10,7 @@
   },
   "rules": {
     "quotemark": [true, "single"], // 字符串文字需要单引号或双引号。
-    "indent": [true, "spaces", 2], // 使用制表符或空格强制缩进。
+    "indent": [true, "spaces", 4], // 使用制表符或空格强制缩进。
     "member-access": false, // 需要类成员的显式可见性声明。
     "interface-name": false, // 接口名要求大写开头
     "ordered-imports": false, // 要求将import语句按字母顺序排列并进行分组。

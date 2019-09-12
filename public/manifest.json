@@ -2,7 +2,7 @@
   "name": "Sean Blog",
   "short_name": "Sean Blog",
   "description": "Welcome to Sean Blog.",
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
   "orientation": "natural",
   "background_color": "#ebebeb",
