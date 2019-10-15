@@ -19,12 +19,16 @@ export default new Vuex.Store<State>({
     userAvatar: localStorage.getItem('userAvatar'),
     isLoading: false,
     loadingMsg: '数据加载中',
+    isFixed: false
   },
   mutations: {
     // 控制loading显示隐藏
     LoadingStatus(state: State, payload) {
       state.isLoading = payload.isLoading;
       state.loadingMsg = payload.loadingMsg
+    },
+    FIXED_STATUS (state: State, payload) {
+      state.isFixed = payload
     },
     LOGOUT (state) {
       state.token = ''
@@ -54,6 +58,8 @@ export default new Vuex.Store<State>({
       localStorage.setItem('userId', usermsg.userId)
     },
   },
-  getters: {},
+  getters: {
+    getIsFixedValue: state => state.isFixed
+  },
   actions: {}
 });

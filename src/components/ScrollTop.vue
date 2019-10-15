@@ -2,22 +2,25 @@
     <div id="goTop">
         <transition name="fade">
             <a href="javascript:void(0);" id="back-to-top" v-show="goTopShow" @click="goTop"><i
-                    class="fa fa-angle-up"></i></a>
+                    class="iconfont iconangleup"></i></a>
         </transition>
     </div>
 </template>
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
+    import { Mutation } from 'vuex-class';
 
     @Component
     export default class ScrollTop extends Vue {
         scrollTop: number = 0;
         goTopShow: boolean = false;
-
+        @Mutation('FIXED_STATUS') fixedStatus
         //窗口滚动监听
         handleScroll() {
             this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
             this.goTopShow = (this.scrollTop > 100);
+
+            this.fixedStatus(this.scrollTop >= 230)
         }
 
         //返回顶部

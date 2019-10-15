@@ -15,7 +15,7 @@
                             </section>
                         </header>
                         <section class="featured-media">
-                            <img src="../assets/images/bg.png" alt="banner图片">
+                            <img src="../assets/images/pic02.jpg" alt="banner图片">
                         </section>
                         <section class="post-content">
                             <p>
@@ -61,7 +61,7 @@
                     </article>
 
                     <div class="prev-next-wrap clearfix">
-                        <router-link class="btn btn-default" to="/Article">没有下一篇<i class="fa fa-angle-right fa-fw"></i>
+                        <router-link class="btn btn-default" to="/Article">没有下一篇<i class="iconfont iconangle-right fa-fw"></i>
                         </router-link>
                     </div>
                 </main>

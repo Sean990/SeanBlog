@@ -20,4 +20,5 @@ export interface State {
     userAvatar: string | null,
     isLoading: boolean | null,
     loadingMsg: string | null,
+    isFixed: boolean | null,
 }

@@ -1,9 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Store from './store/index' //状态管理
+import Store from './store/index' // 状态管理
 
 Vue.use(Router);
-
 
 const routerMap = [
   {path: '*', component: () => import('@/views/404.vue')},
@@ -53,10 +52,11 @@ const router = new Router({
   routes: routerMap
 })
 
-//全局守卫
+// 全局守卫
 router.beforeEach((to, from, next) => {
-  next(); //如果匹配到正确跳转
-
+  next(); // 如果匹配到正确跳转
+  // 滚动条位置重置
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
   Store.commit({
     type: 'SET_CURR_ROUTER',
     from: from.name,

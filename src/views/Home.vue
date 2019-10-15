@@ -3,44 +3,46 @@
         <div class="container">
             <div class="row">
                 <main class="col-md-8 main-content">
-                    <article id="1" class="post">
+                    <article :id="item.id" class="post" v-for="item in articleList" :key="item.id">
                         <div class="post-head">
                             <h1 class="post-title">
-                                <router-link to="/Article/id=1">前端技巧分享</router-link>
+                                <router-link :to="'/Article/id=' + item.id">{{item.article_title}}</router-link>
                             </h1>
                             <section class="post-meta">
-                                <span class="author">作者：<router-link to="/About">Sean</router-link></span> •
-                                <time class="post-date" datetime="2018年8月4日星期四凌晨3点41分" title="2018年8月4日星期四凌晨3点41分">
-                                    2018年8月4日
+                                <span class="author">作者：<router-link to="/About">{{item.user.nickname}}</router-link></span> •
+                                <time class="post-date" :datetime="item.detail_time" :title="item.detail_time">
+                                    {{item.create_time}}
                                 </time>
                             </section>
                         </div>
-                        <div class="post-content">
-                            <p>
-                                前端这几年，没有大的成就，就入门期间积累了不少技巧与心得，跟大家分享一下，不一定都适合每个人，毕竟人与人的教育背景与成长环境心理活动都有差别，但就别人的心得再结合自己的特点，然后探索适合自己的学习之路是比较好的。学习没有捷径，但学习是有技巧与方法。</p>
+                        <div class="featured-media" v-if="item.article_pic">
+                            <router-link :to="'/Article/id=' + item.id">
+                                <img :src="item.article_pic" :alt="item.article_title" />
+                            </router-link>
                         </div>
+                        <div class="post-content" v-html="item.article_cont"></div>
                         <div class="post-permalink">
-                            <router-link to="/Article/id=1" class="btn btn-default">阅读全文</router-link>
+                            <router-link :to="'/Article/id=' + item.id" class="more-link">continue reading</router-link>
                         </div>
 
-                        <footer class="post-footer clearfix">
+                        <footer class="post-footer clearfix" v-if="item.tags.length > 1">
                             <div class="pull-left tag-list">
-                                <i class="fa fa-tags"></i>
-                                <router-link to="/tag/name=CSS">CSS</router-link>
-                                ,
-                                <router-link to="/tag/name=JavaScript">JavaScript</router-link>
+                                <i class="iconfont icontags"></i>
+                                <template v-for="(tag,index) in item.tags">
+                                    <template v-if="index > 0">,</template>
+                                    <router-link :to="'/tag/name=' + tag.tag_title">{{tag.tag_title}}</router-link>
+                                </template>
                             </div>
-                            <div class="pull-right share">
-                            </div>
+                            <div class="pull-right share"></div>
                         </footer>
                     </article>
 
 
-                    <nav class="pagination" role="navigation">
-                        <!--              <router-link class="older-posts" to="/page/1/"><i class="fa fa-angle-left"></i></router-link>-->
-                        <span class="page-number">第 1 页 ⁄ 共 1 页</span>
-                        <!--            <router-link class="older-posts" to="/page/2/"><i class="fa fa-angle-right"></i></router-link>-->
-                    </nav>
+<!--                    <nav class="pagination" role="navigation">-->
+<!--                        &lt;!&ndash;              <router-link class="older-posts" to="/page/1/"><i class="fa fa-angle-left"></i></router-link>&ndash;&gt;-->
+<!--                        <span class="page-number">第 1 页 ⁄ 共 1 页</span>-->
+<!--                        &lt;!&ndash;            <router-link class="older-posts" to="/page/2/"><i class="fa fa-angle-right"></i></router-link>&ndash;&gt;-->
+<!--                    </nav>-->
                 </main>
                 <Sidebar></Sidebar>
             </div>
@@ -51,17 +53,20 @@
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
     import Sidebar from "@/components/Sidebar.vue";
-
     @Component({
         components: {
             Sidebar
         }
     })
     export default class Home extends Vue {
-        created() {
-            // this.$axios({
-            //   url: '/Index'
-            // })
+        articleList:Array<any> = []
+        created () {
+            this.$axios({
+                url: this.$request.HOME,
+                method: 'get',
+            }).then(res => {
+                this.articleList = res;
+            })
         }
     }
 </script>

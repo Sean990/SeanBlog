@@ -43,21 +43,18 @@ module.exports = {
     devServer: {
         compress: true, //一切服务都启用 gzip 压缩
         host: '0.0.0.0',
-        // host: '192.168.0.164',
         port: 8080,
         https: false,
         hotOnly: false,
         open: true,
-        // 查阅 https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/cli-service.md#配置代理
-        // proxy: 'http://localhost:3001', // string | Object
         proxy: {
             '/api': {
                 // 目标 API 地址
-                target: 'http://127.0.0.1/myself/SeanBlogPhp/public/',
-                ws: true,
+                target: 'http://localhost:3000/',
+                // ws: true,
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/api': '/'
+                    '^/api': ''
                 }
             }
         },
@@ -82,7 +79,7 @@ module.exports = {
             });
     },
 
-    configureWebpack: (config)=>{
+    configureWebpack: (config) => {
         // vue骨架屏插件配置
         config.plugins.push(new SkeletonWebpackPlugin({
             webpackConfig: {

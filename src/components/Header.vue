@@ -1,31 +1,20 @@
 <template>
-    <div>
+    <div :class="{'fixed-main' : isFixed}">
         <header class="main-header" :style="{backgroundImage: 'url(' + headerBg + ')'}">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
                         <h1><span class="hide">Web - </span>Sean Blog</h1>
                         <h2 class="hide">Web THAT DOESN'T HURT. CODE HAPPY &amp; ENJOY THE FRESH AIR.</h2>
-                        <img :src="headerBg" alt="Web"
-                             class="hide">
+                        <img :src="headerBg" alt="Web" class="hide">
                     </div>
-                    <div class="col-xs-12 hidden-xs hidden-sm">
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=HTML">HTML</router-link>
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=CSS">CSS</router-link>
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=JavaScript">JavaScript</router-link>
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=JQuery">JQuery</router-link>
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=Vue">Vue.js</router-link>
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=ES6">ES6</router-link>
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=WebPack">WebPack</router-link>
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=mysql">MySQL</router-link>
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=nginx">Nginx</router-link>
-                        <router-link class="btn btn-default btn-doc" to="/tag/name=小程序">小程序</router-link>
-                    </div>
+                    <div class="col-xs-12 hidden-xs hidden-sm header-sign">Keep an eye on the future.</div>
+                    <!--<router-link class="btn btn-default btn-doc" :to="'/tag/name=' + item.tag_title" v-for="(item, index) in tagLis" :key="index">{{item.tag_title}}</router-link>-->
                 </div>
             </div>
         </header>
 
-        <nav class="main-navigation">
+        <nav class="main-navigation" :class="{'fixed-navigation' : isFixed}">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12" style="padding: 0">
@@ -33,8 +22,6 @@
                             <span class="nav-toggle-button" :class="{'collapsed': isShowMenu}" @click.stop="toggleMenu"
                                   data-toggle="collapse" data-target="#main-menu">
                                 <span class="sr-only">Toggle navigation</span>
-<!--                                fa fa-bars-->
-<!--                                <i class="fa fa-bars"></i>-->
                                 <div class="menu-bars" :class="{'is-active':isShowMenu}">
                                     <div class="line"></div>
                                     <div class="line"></div>
@@ -59,6 +46,7 @@
 
 <script lang="ts">
     import {Component, Watch, Vue} from 'vue-property-decorator';
+    import { Getter, Mutation } from 'vuex-class';
 
     @Component
     export default class Header extends Vue {
@@ -77,12 +65,21 @@
             name: '关于'
         }];
         currentRoute: string = '/';
-        headerBg: object = require('../assets/images/bg.png');
+        headerBg: object = require('../assets/images/bg_banner.jpg');
         isShowMenu: boolean = false;
+        isFixed: boolean = false;
+        tagLis: Array<any> = []
+
+        @Getter('getIsFixedValue') getIsFixed
 
         @Watch('$route')
         routeChange(to, from): void {
             this.currentRoute = to.path;
+        }
+
+        @Watch('getIsFixed')
+        getIsFixedChanged(val) {
+            this.isFixed = val
         }
 
         toggleMenu() {
@@ -92,6 +89,12 @@
         // 生命周期
         created () {
             this.currentRoute = this.$route.path;
+            this.$axios({
+                url: this.$request.TAG,
+                method: 'get'
+            }).then(res => {
+                this.tagLis = res;
+            })
         }
     }
 </script>

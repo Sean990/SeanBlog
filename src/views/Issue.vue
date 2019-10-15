@@ -9,7 +9,7 @@
                             <h1 class="post-title">留言</h1>
                         </header>
                         <section class="featured-media">
-                            <img src="../assets/images/pic01.png" alt="回忆">
+                            <img src="../assets/images/pic01.jpg" alt="回忆">
                         </section>
                         <section class="post-content">
                             <div class="issue-box">
@@ -49,7 +49,7 @@
 
 <style scoped>
     .issue-box {position: relative;border: 1px solid #ebebeb;height: 130px;}
-    .issue-content {border: none;width: 100%;height: 100%;resize: none;font-size: 16px;padding: 8px 15px;}
-    .issue-content::-webkit-input-placeholder {font-size: 16px;}
+    .issue-content {border: none;width: 100%;height: 100%;resize: none;font-size: 14px;padding: 8px 15px;}
+    .issue-content::-webkit-input-placeholder {font-size: 14px;}
     .issue-number {position: absolute;bottom: 15px;right: 15px;font-size: 14px;}
 </style>
