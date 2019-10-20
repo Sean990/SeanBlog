@@ -9,7 +9,7 @@
                             <h1 class="post-title">留言</h1>
                         </header>
                         <section class="featured-media">
-                            <img src="../assets/images/pic01.jpg" alt="回忆">
+                            <img src="https://zay990.com/img/pic01.jpg" alt="回忆">
                         </section>
                         <section class="post-content">
                             <div class="issue-box">

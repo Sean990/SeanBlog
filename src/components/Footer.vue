@@ -50,7 +50,7 @@
             })
 
             this.$axios({
-                url: this.$request.TAG,
+                url: this.$request.TAG_LIST,
                 method: "get"
             }).then(res => {
                 this.tagLis = res;

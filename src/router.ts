@@ -34,15 +34,20 @@ const routerMap = [
     meta: {title: '关于'},
     component: () => import('@/views/About.vue'),
   }, {
-    path: '/Article/:id',
+    path: '/Article',
     name: '/Article',
     meta: {title: '文章'},
     component: () => import('@/views/Article.vue'),
   }, {
-    path: '/Tag/:name',
+    path: '/Tag',
     name: '/Tag',
     meta: {title: '标签'},
     component: () => import('@/views/Tag.vue'),
+  }, {
+    path: '/TagCloud',
+    name: '/TagCloud',
+    meta: {title: '标签云'},
+    component: () => import('@/views/TagCloud.vue'),
   }
 ];
 

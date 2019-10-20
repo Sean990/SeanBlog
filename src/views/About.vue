@@ -6,14 +6,10 @@
                 <main class="col-md-8 main-content">
                     <article class="post">
                         <header class="post-head">
-                            <h1 class="post-title">关于</h1>
-                            <!--              <section class="post-meta">-->
-                            <!--                <span class="author">作者：<router-link to="/Author/">Sean</router-link></span> •-->
-                            <!--                <time class="post-date" datetime="2019年4月28日星期日凌晨3点41分" title="2019年4月28日星期日凌晨3点41分">2019年4月28日</time>-->
-                            <!--              </section>-->
+                            <h1 class="post-title">关于我</h1>
                         </header>
                         <section class="featured-media">
-                            <img src="../assets/images/making_bg.png" alt="JavaScript">
+                            <img src="https://zay990.com/img/making_bg.png" alt="About Me">
                         </section>
                         <section class="post-content">
                             <h2>联系</h2>

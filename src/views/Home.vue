@@ -6,7 +6,7 @@
                     <article :id="item.id" class="post" v-for="item in articleList" :key="item.id">
                         <div class="post-head">
                             <h1 class="post-title">
-                                <router-link :to="'/Article/id=' + item.id">{{item.article_title}}</router-link>
+                                <router-link :to="'/Article?id=' + item.id">{{item.article_title}}</router-link>
                             </h1>
                             <section class="post-meta">
                                 <span class="author">作者：<router-link to="/About">{{item.user.nickname}}</router-link></span> •
@@ -16,13 +16,13 @@
                             </section>
                         </div>
                         <div class="featured-media" v-if="item.article_pic">
-                            <router-link :to="'/Article/id=' + item.id">
+                            <router-link :to="'/Article?id=' + item.id">
                                 <img :src="item.article_pic" :alt="item.article_title" />
                             </router-link>
                         </div>
                         <div class="post-content" v-html="item.article_cont"></div>
                         <div class="post-permalink">
-                            <router-link :to="'/Article/id=' + item.id" class="more-link">continue reading</router-link>
+                            <router-link :to="'/Article?id=' + item.id" class="more-link">continue reading</router-link>
                         </div>
 
                         <footer class="post-footer clearfix" v-if="item.tags.length > 1">
@@ -30,7 +30,7 @@
                                 <i class="iconfont icontags"></i>
                                 <template v-for="(tag,index) in item.tags">
                                     <template v-if="index > 0">,</template>
-                                    <router-link :to="'/tag/name=' + tag.tag_title">{{tag.tag_title}}</router-link>
+                                    <router-link :to="'/Tag?id=' + tag.id">{{tag.tag_title}}</router-link>
                                 </template>
                             </div>
                             <div class="pull-right share"></div>
